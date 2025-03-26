@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-DocsForArchitectCommunity documentation
+アーキ塾活動内容共有用ページ
 =======================================
 
 Add your content using ``reStructuredText`` syntax. See the
