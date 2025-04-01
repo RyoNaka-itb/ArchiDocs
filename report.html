@@ -17,7 +17,7 @@
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
-    <link rel="prev" title="DocsForArchitectCommunity documentation" href="index.html" />
+    <link rel="prev" title="アーキ塾活動内容共有用ページ" href="index.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -30,7 +30,7 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="index.html" title="DocsForArchitectCommunity documentation"
+          <a href="index.html" title="アーキ塾活動内容共有用ページ"
              accesskey="P">前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">DocsForArchitectCommunity 0.1 ドキュメント</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">AWS環境でRocketChatを使用できる環境を構築する</a></li> 
@@ -50,7 +50,21 @@
 <p>アーキテクト塾での作業内容を以下に記載する。</p>
 <section id="id2">
 <h3>環境構築<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
-<p>RocketChatをAWS上で利用するにあたって、以下の環境を構築する。</p>
+<p>RocketChatをAWS上で利用するにあたって、以下の手順で環境を構築する。</p>
+<ol class="arabic simple">
+<li><p>VPCの作成</p></li>
+<li><p>サブネットの作成</p></li>
+<li><p>インターネットゲートウェイの作成</p></li>
+</ol>
+<p>　* VPCにアタッチ（パブリックサブネット-VPC外の通信に必要）
+5. NATゲートウェイの作成
+　* パブリックサブネットにアタッチ（プライベートサブネット-VPC外の通信に必要（パブリックサブネットからインターネットゲートウェイを経由））
+4. ルートテーブルの作成
+5.セキュリティグループの作成
+　* SSH,HTTPのインバウンド接続を許可
+6. EC2の作成
+　* パブリックサブネットに作成
+　* Linux、t2microを使用</p>
 </section>
 </section>
 <section id="id3">
@@ -83,7 +97,7 @@
   <div>
     <h4>前のトピックへ</h4>
     <p class="topless"><a href="index.html"
-                          title="前の章へ">DocsForArchitectCommunity documentation</a></p>
+                          title="前の章へ">アーキ塾活動内容共有用ページ</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>このページ</h3>
@@ -113,7 +127,7 @@
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="index.html" title="DocsForArchitectCommunity documentation"
+          <a href="index.html" title="アーキ塾活動内容共有用ページ"
              >前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">DocsForArchitectCommunity 0.1 ドキュメント</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">AWS環境でRocketChatを使用できる環境を構築する</a></li> 
