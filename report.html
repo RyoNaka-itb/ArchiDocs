@@ -17,7 +17,7 @@
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
-    <link rel="prev" title="アーキ塾活動内容共有用ページ" href="index.html" />
+    <link rel="prev" title="アーキ塾活動内容共有用ページ -nakashima" href="index.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -30,7 +30,7 @@
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
         <li class="right" >
-          <a href="index.html" title="アーキ塾活動内容共有用ページ"
+          <a href="index.html" title="アーキ塾活動内容共有用ページ -nakashima"
              accesskey="P">前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">DocsForArchitectCommunity 0.1 ドキュメント</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">AWS環境でRocketChatを使用できる環境を構築する</a></li> 
@@ -51,25 +51,45 @@
 <section id="id2">
 <h3>環境構築<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <p>RocketChatをAWS上で利用するにあたって、以下の手順で環境を構築する。</p>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p>VPCの作成</p></li>
 <li><p>サブネットの作成</p></li>
-<li><p>インターネットゲートウェイの作成</p></li>
+<li><p>インターネットゲートウェイの作成</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>VPCにアタッチ（パブリックサブネット-VPC外の通信に必要）</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>NATゲートウェイの作成</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>パブリックサブネットにアタッチ（プライベートサブネット-VPC外の通信に必要(パブリックサブネットからインターネットゲートウェイを経由)）</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>ルートテーブルの作成</p></li>
+<li><p>セキュリティグループの作成</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>SSH,HTTPのインバウンド接続を許可</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>EC2の作成</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>パブリックサブネットに作成</p></li>
+<li><p>Linux、t2microを使用</p></li>
+</ul>
+</div></blockquote>
+</li>
 </ol>
-<p>　* VPCにアタッチ（パブリックサブネット-VPC外の通信に必要）
-4. NATゲートウェイの作成</p>
-<p>　* パブリックサブネットにアタッチ（プライベートサブネット-VPC外の通信に必要(パブリックサブネットからインターネットゲートウェイを経由)）
-5. ルートテーブルの作成
-6. セキュリティグループの作成</p>
-<p>　* SSH,HTTPのインバウンド接続を許可
-7. EC2の作成</p>
-<p>　* パブリックサブネットに作成
-　* Linux、t2microを使用</p>
 </section>
 </section>
 <section id="id3">
 <h2>問題点<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
-<p>Sphinxを用いて作成したhtmlとGithub上で公開しているhtmlの表示が一致しない。</p>
+<p>Sphinxを用いて作成したhtmlとGithub上で公開しているhtmlの表示が一致しない。(テーマが適用されていない)</p>
 </section>
 </section>
 
@@ -97,7 +117,7 @@
   <div>
     <h4>前のトピックへ</h4>
     <p class="topless"><a href="index.html"
-                          title="前の章へ">アーキ塾活動内容共有用ページ</a></p>
+                          title="前の章へ">アーキ塾活動内容共有用ページ -nakashima</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>このページ</h3>
@@ -127,7 +147,7 @@
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
         <li class="right" >
-          <a href="index.html" title="アーキ塾活動内容共有用ページ"
+          <a href="index.html" title="アーキ塾活動内容共有用ページ -nakashima"
              >前へ</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">DocsForArchitectCommunity 0.1 ドキュメント</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">AWS環境でRocketChatを使用できる環境を構築する</a></li> 
