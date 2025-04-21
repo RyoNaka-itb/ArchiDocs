@@ -49,7 +49,7 @@
 <h2>実施内容<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>アーキテクト塾での作業内容を以下に記載する。</p>
 <section id="id2">
-<h3>環境構築<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<h3>環境構築準備<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <p>RocketChatをAWS上で利用するにあたって、以下の手順で環境を構築する。</p>
 <blockquote>
 <div><img alt="_images/RocketChatArchitect_1.png" src="_images/RocketChatArchitect_1.png" />
@@ -58,6 +58,7 @@
 <blockquote>
 <div><img alt="_images/RocketChatArchitect_2.png" src="_images/RocketChatArchitect_2.png" />
 </div></blockquote>
+<p>上記のアーキテクチャでまずはRocket Chatへのアクセスが可能な状態まで構築する。</p>
 <ol class="arabic simple">
 <li><p>VPCの作成</p></li>
 <li><p>サブネットの作成</p></li>
@@ -93,9 +94,24 @@
 </li>
 </ol>
 </section>
-</section>
 <section id="id3">
-<h2>問題点<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<h3>環境構築<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<p>#.VPCの作成</p>
+<p>　以下でVPCを作成
+　RocketChat_ArchitectSchool-vpc</p>
+<blockquote>
+<div><img alt="_images/RocketChat_ArchitectSchool-vpc.png" src="_images/RocketChat_ArchitectSchool-vpc.png" />
+</div></blockquote>
+<p>#.EC2の作成
+　Amazon Linux 2023 AMI、t2micro
+　SSH(全てのトラフィック)、HTTPS、HTTPを許可</p>
+<p>　Dockerのインストール、ならびにmongodbとRocket Chatのイメージのインストールとコンテナの起動まで完了。
+　mongodbはインスタンス起動時に自動起動されるように設定済み。
+　パブリックIPを使用してのHTTP通信でRocket Chatにアクセスしようとすると、会社のFWにはじかれてアクセスできない状態。</p>
+</section>
+</section>
+<section id="id4">
+<h2>問題点<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Sphinxを用いて作成したhtmlとGithub上で公開しているhtmlの表示が一致しない。(テーマが適用されていない)</p></li>
 </ul>
@@ -103,6 +119,15 @@
 <ul class="simple">
 <li><p>Rocket Chatをインストールするインスタンスはプライベートサブネットとパブリックサブネットのどちらに作成するべきなのか？</p></li>
 </ul>
+<p>　→プライベートサブネットに作成した場合はパブリックサブネットにNATインスタンスを構築して経由する必要がある。
+　　どうしても隠す必要があるものはプライベートサブネット、それ以外はパブリックサブネットに構築がベーシックな考え方。
+　　（パブリックサブネット＝家に置いておく、プライベートサブネット＝さらに金庫の中に入れる　みたいなイメージ）</p>
+<ul class="simple">
+<li><p>セキュリティグループ作成時のSSH接続で表示される自分のIPアドレスと自端末のIPアドレスが異なるのはなぜか？</p></li>
+<li><p>SSHのインバウンド通信でマイIPあるいはBXOのIPだけに制限した場合、Instance Connectで接続ができなくなったが、なぜなのか？</p></li>
+<li><p>パブリックIPを使用してのHTTP通信でRocket Chatにアクセスしようとすると、会社のFWにはじかれてアクセスできない。</p></li>
+</ul>
+<p>　→踏み台サーバを作成するのが簡単？HTTPS通信が可能にする？</p>
 </section>
 </section>
 
@@ -118,10 +143,11 @@
     <ul>
 <li><a class="reference internal" href="#">AWS環境でRocketChatを使用できる環境を構築する</a><ul>
 <li><a class="reference internal" href="#id1">実施内容</a><ul>
-<li><a class="reference internal" href="#id2">環境構築</a></li>
+<li><a class="reference internal" href="#id2">環境構築準備</a></li>
+<li><a class="reference internal" href="#id3">環境構築</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id3">問題点</a></li>
+<li><a class="reference internal" href="#id4">問題点</a></li>
 </ul>
 </li>
 </ul>
