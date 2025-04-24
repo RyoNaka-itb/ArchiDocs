@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>アーキ塾活動内容共有用ページ -nakashima &#8212; DocsForArchitectCommunity 0.1 ドキュメント</title>
+    <title>MongoDBのインストール &#8212; DocsForArchitectCommunity 0.1 ドキュメント</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=5283bb3d" />
     
@@ -17,7 +17,6 @@
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="検索" href="search.html" />
-    <link rel="next" title="AWS環境でRocketChatを使用できる環境を構築する" href="report.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -29,11 +28,8 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
-        <li class="right" >
-          <a href="report.html" title="AWS環境でRocketChatを使用できる環境を構築する"
-             accesskey="N">次へ</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">DocsForArchitectCommunity 0.1 ドキュメント</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">アーキ塾活動内容共有用ページ -nakashima</a></li> 
+        <li class="nav-item nav-item-0"><a href="index.html">DocsForArchitectCommunity 0.1 ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MongoDBのインストール</a></li> 
       </ul>
     </div>  
 
@@ -42,21 +38,33 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="nakashima">
-<h1>アーキ塾活動内容共有用ページ -nakashima<a class="headerlink" href="#nakashima" title="Link to this heading">¶</a></h1>
-<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
-documentation for details.</p>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="report.html">AWS環境でRocketChatを使用できる環境を構築する</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="report.html#id1">実施内容</a></li>
-<li class="toctree-l2"><a class="reference internal" href="report.html#id4">問題点</a></li>
-</ul>
-</li>
-</ul>
-</div>
+  <p>Rocket Chatの導入手順
+====================＝</p>
+<section id="mongodb">
+<h1>MongoDBのインストール<a class="headerlink" href="#mongodb" title="Link to this heading">¶</a></h1>
+<p>cd /etc/yum.repos.d/</p>
+<p>sudo nano mongodb-org-8.0.repo</p>
+<p>cd</p>
+<p>sudo yum install -y mongodb-org</p>
+<p>sudo systemctl start mongod</p>
+<p>sudo systemctl status mongod</p>
+<p>sudo systemctl enable mongod</p>
+<p>sudo systemctl restart mongod</p>
+</section>
+<section id="node-js">
+<h1>node.jsのインストール<a class="headerlink" href="#node-js" title="Link to this heading">¶</a></h1>
+<p>curl -sL <a class="reference external" href="https://rpm.nodesource.com/setup_14.x">https://rpm.nodesource.com/setup_14.x</a> | sudo bash -</p>
+<p>curl -o- <a class="reference external" href="https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh">https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh</a> | bash</p>
+<p>source ~/.bashrc</p>
+<p>nvm install --lts</p>
+<p>node -e &quot;console.log('Running Node.js ' + process.version)&quot;</p>
+</section>
+<section id="rocket-chat">
+<h1>Rocket Chatのインストール<a class="headerlink" href="#rocket-chat" title="Link to this heading">¶</a></h1>
+<p>curl -L <a class="reference external" href="https://releases.rocket.chat/latest/download">https://releases.rocket.chat/latest/download</a> -o rocket.chat.tgz</p>
+<p>tar -xvzf rocket.chat.tgz</p>
+<p>cd bundle/programs/server</p>
+<p>npm install</p>
 </section>
 
 
@@ -67,14 +75,18 @@ documentation for details.</p>
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
-    <h4>次のトピックへ</h4>
-    <p class="topless"><a href="report.html"
-                          title="次の章へ">AWS環境でRocketChatを使用できる環境を構築する</a></p>
+    <h3><a href="index.html">目次</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">MongoDBのインストール</a></li>
+<li><a class="reference internal" href="#node-js">node.jsのインストール</a></li>
+<li><a class="reference internal" href="#rocket-chat">Rocket Chatのインストール</a></li>
+</ul>
+
   </div>
   <div role="note" aria-label="source link">
     <h3>このページ</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
+      <li><a href="_sources/install.rst.txt"
             rel="nofollow">ソースコードを表示</a></li>
     </ul>
    </div>
@@ -98,11 +110,8 @@ documentation for details.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
-        <li class="right" >
-          <a href="report.html" title="AWS環境でRocketChatを使用できる環境を構築する"
-             >次へ</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">DocsForArchitectCommunity 0.1 ドキュメント</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">アーキ塾活動内容共有用ページ -nakashima</a></li> 
+        <li class="nav-item nav-item-0"><a href="index.html">DocsForArchitectCommunity 0.1 ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MongoDBのインストール</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
