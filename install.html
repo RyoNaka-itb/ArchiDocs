@@ -70,34 +70,8 @@
 <p>cd bundle/programs/server</p>
 <p>npm install</p>
 </section>
-<section id="id2">
-<h2>Rocket Chatサービスの設定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
-<p>cd ~
-cat &lt;&lt;EOF | sudo tee -a /etc/systemd/system/rocketchat.service
-[Unit]
-Description=Rocket.Chat
-After=network.target remote-fs.target nss-lookup.target mongod.service</p>
-<p>[Service]
-ExecStart=/home/ec2-user/.nvm/versions/node/v22.15.0/bin/node /home/ec2-user/bundle/main.js
-Environment=ROOT_URL=http://57.181.157.211:3000/</p>
-<p>(ElasticIPを付与)</p>
-<p>Environment=MONGO_URL=mongodb://localhost:27017/rocketchat
-Environment=MONGO_OPLOG_URL=mongodb://localhost:27017/local
-User=ec2-user
-Restart=always
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=rocketchat</p>
-<p>[Install]
-WantedBy=multi-user.target
-EOF</p>
-<p>sudo systemctl daemon-reload
-sudo systemctl start rocketchat
-sudo systemctl enable rocketchat</p>
-<p>sudo systemctl status rocketchat でactive（runnning）となっていることを確認</p>
-</section>
 <section id="web-nginx">
-<h2>Webサーバ（NGINX）の設定<a class="headerlink" href="#web-nginx" title="Link to this heading">¶</a></h2>
+<h2>Webサーバ（NGINX）のインストールと設定<a class="headerlink" href="#web-nginx" title="Link to this heading">¶</a></h2>
 <p>sudo yum install -y nginx</p>
 <p>sudo systemctl start nginx</p>
 <p>sudo systemctl enable nginx</p>
@@ -145,8 +119,7 @@ sudo systemctl enable rocketchat</p>
 <li><a class="reference internal" href="#mongodb">MongoDBのインストール</a></li>
 <li><a class="reference internal" href="#node-js">node.jsのインストール</a></li>
 <li><a class="reference internal" href="#id1">Rocket Chatのインストール</a></li>
-<li><a class="reference internal" href="#id2">Rocket Chatサービスの設定</a></li>
-<li><a class="reference internal" href="#web-nginx">Webサーバ（NGINX）の設定</a></li>
+<li><a class="reference internal" href="#web-nginx">Webサーバ（NGINX）のインストールと設定</a></li>
 <li><a class="reference internal" href="#rocketchat">RocketChatの環境変数の設定</a></li>
 </ul>
 </li>
