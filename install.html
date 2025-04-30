@@ -70,6 +70,65 @@
 <p>cd bundle/programs/server</p>
 <p>npm install</p>
 </section>
+<section id="id2">
+<h2>Rocket Chatサービスの設定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>cd ~
+cat &lt;&lt;EOF | sudo tee -a /etc/systemd/system/rocketchat.service
+[Unit]
+Description=Rocket.Chat
+After=network.target remote-fs.target nss-lookup.target mongod.service</p>
+<p>[Service]
+ExecStart=/home/ec2-user/.nvm/versions/node/v22.15.0/bin/node /home/ec2-user/bundle/main.js
+Environment=ROOT_URL=http://57.181.157.211:3000/</p>
+<p>(ElasticIPを付与)</p>
+<p>Environment=MONGO_URL=mongodb://localhost:27017/rocketchat
+Environment=MONGO_OPLOG_URL=mongodb://localhost:27017/local
+User=ec2-user
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=rocketchat</p>
+<p>[Install]
+WantedBy=multi-user.target
+EOF</p>
+<p>sudo systemctl daemon-reload
+sudo systemctl start rocketchat
+sudo systemctl enable rocketchat</p>
+<p>sudo systemctl status rocketchat でactive（runnning）となっていることを確認</p>
+</section>
+<section id="web-nginx">
+<h2>Webサーバ（NGINX）の設定<a class="headerlink" href="#web-nginx" title="Link to this heading">¶</a></h2>
+<p>sudo yum install -y nginx</p>
+<p>sudo systemctl start nginx</p>
+<p>sudo systemctl enable nginx</p>
+<p>sudo systemctl status nginx でactive（runnning）となっていることを確認</p>
+<p>sudo nano /etc/nginx/nginx.conf 設定ファイルに以下を追記</p>
+<p>http通信をnginxで受けて、Rocket Chatに転送するように設定。</p>
+<blockquote>
+<div><img alt="_images/nginx_conf.png" src="_images/nginx_conf.png" />
+</div></blockquote>
+<p>sudo nginx -t　で設定の再読み込み</p>
+<p>sudo systemctl restart nginx</p>
+</section>
+<section id="rocketchat">
+<h2>RocketChatの環境変数の設定<a class="headerlink" href="#rocketchat" title="Link to this heading">¶</a></h2>
+<p>export ROOT_URL=http://57.181.157.211</p>
+<p>export PORT=3000</p>
+<p>export MONGO_URL=mongodb://localhost:27017/rocketchat</p>
+<p>export MONGO_OPLOG_URL=mongodb://localhost:27017/local</p>
+<p>sudo nano /etc/systemd/system/rocketchat.service</p>
+<p>以下を記載（再起動時にも環境変数が反映されるように）</p>
+<blockquote>
+<div><img alt="_images/RocketChat_service.png" src="_images/RocketChat_service.png" />
+</div></blockquote>
+<p>sudo systemctl daemon-reload</p>
+<p>sudo systemctl restart rocketchat</p>
+<p>sudo systemctl status rocketchat</p>
+<p>NGINXの設定テストと再起動を実施後、<a class="reference external" href="http://57.181.157">http://57.181.157</a>.211でRocket Chatにアクセスが成功</p>
+<blockquote>
+<div><img alt="_images/RocketChat.png" src="_images/RocketChat.png" />
+</div></blockquote>
+</section>
 </section>
 
 
@@ -86,6 +145,9 @@
 <li><a class="reference internal" href="#mongodb">MongoDBのインストール</a></li>
 <li><a class="reference internal" href="#node-js">node.jsのインストール</a></li>
 <li><a class="reference internal" href="#id1">Rocket Chatのインストール</a></li>
+<li><a class="reference internal" href="#id2">Rocket Chatサービスの設定</a></li>
+<li><a class="reference internal" href="#web-nginx">Webサーバ（NGINX）の設定</a></li>
+<li><a class="reference internal" href="#rocketchat">RocketChatの環境変数の設定</a></li>
 </ul>
 </li>
 </ul>
