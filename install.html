@@ -103,6 +103,25 @@
 <div><img alt="_images/RocketChat.png" src="_images/RocketChat.png" />
 </div></blockquote>
 </section>
+<section id="htps">
+<h2>HTPS通信実施のための設定<a class="headerlink" href="#htps" title="Link to this heading">¶</a></h2>
+<p>sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt</p>
+<p>以下を入力</p>
+<blockquote>
+<div><img alt="_images/nginx-selfsigned_crt.png" src="_images/nginx-selfsigned_crt.png" />
+</div></blockquote>
+<p>sudo nano /etc/nginx/nginx.conf</p>
+<p>HTTPS通信を処理するためにNGINXの設定ファイルに以下を記載</p>
+<blockquote>
+<div><img alt="_images/nginx%28ssl%29_conf.png" src="_images/nginx%28ssl%29_conf.png" />
+</div></blockquote>
+<p>sudo nginx -t</p>
+<p>sudo systemctl restart nginx</p>
+<blockquote>
+<div><img alt="_images/capture_of_sslError.png" src="_images/capture_of_sslError.png" />
+</div></blockquote>
+<p>HTTPS通信で暗号化を実施することができていない。</p>
+</section>
 </section>
 
 
@@ -121,6 +140,7 @@
 <li><a class="reference internal" href="#id1">Rocket Chatのインストール</a></li>
 <li><a class="reference internal" href="#web-nginx">Webサーバ（NGINX）のインストールと設定</a></li>
 <li><a class="reference internal" href="#rocketchat">RocketChatの環境変数の設定</a></li>
+<li><a class="reference internal" href="#htps">HTPS通信実施のための設定</a></li>
 </ul>
 </li>
 </ul>
