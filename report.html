@@ -100,44 +100,52 @@
 </section>
 <section id="id3">
 <h3>環境構築<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
-<ol class="arabic simple">
-<li><p>VPCの作成</p></li>
-</ol>
-<p>　以下でVPCを作成
-　RocketChat_ArchitectSchool-vpc</p>
+<ol class="arabic">
+<li><p>VPCの作成</p>
 <blockquote>
-<div><img alt="_images/RocketChat_ArchitectSchool-vpc.png" src="_images/RocketChat_ArchitectSchool-vpc.png" />
+<div><p>以下でVPCを作成
+RocketChat_ArchitectSchool-vpc</p>
+<img alt="_images/RocketChat_ArchitectSchool-vpc.png" src="_images/RocketChat_ArchitectSchool-vpc.png" />
 </div></blockquote>
-<ol class="arabic simple">
-<li><p>EC2の作成</p></li>
+</li>
+<li><p>EC2の作成</p>
+<blockquote>
+<div><p>Amazon Linux 2023 AMI、t2micro</p>
+<p>SSH(全てのトラフィック)、HTTPS、HTTPを許可</p>
+<p>Instance Connectを可能にするロールを作成してEC2にアタッチ済み（RochetChat_ArchiSchool_EC2InstanceConnect）</p>
+<p>Dockerのインストール、ならびにmongodbとRocket Chatのイメージのインストールとコンテナの作成まで完了。</p>
+<p>パブリックIPを使用してのHTTP通信でRocket Chatにアクセスしようとすると、会社のFWにはじかれてアクセスできない状態。</p>
+</div></blockquote>
+</li>
+<li><p>RocketChatの導入</p>
+<blockquote>
+<div><p>EC2インスタンスへのRocketChat導入手順については以下を参照</p>
+<p>'RocketChat導入手順&lt;<a class="reference external" href="https://ryonaka-itb.github.io/ArchiDocs/install.html">https://ryonaka-itb.github.io/ArchiDocs/install.html</a>&gt;'_</p>
+</div></blockquote>
+</li>
 </ol>
-<p>　Amazon Linux 2023 AMI、t2micro</p>
-<p>　SSH(全てのトラフィック)、HTTPS、HTTPを許可</p>
-<p>　Instance Connectを可能にするロールを作成してEC2にアタッチ済み（RochetChat_ArchiSchool_EC2InstanceConnect）</p>
-<p>　Dockerのインストール、ならびにmongodbとRocket Chatのイメージのインストールとコンテナの作成まで完了。</p>
-<p>　パブリックIPを使用してのHTTP通信でRocket Chatにアクセスしようとすると、会社のFWにはじかれてアクセスできない状態。</p>
-<ol class="arabic simple">
-<li><p>RocketChatの導入</p></li>
-</ol>
-<p>　EC2インスタンスへのRocketChat導入手順については以下を参照</p>
-<p>　'RocketChat導入手順&lt;<a class="reference external" href="https://ryonaka-itb.github.io/ArchiDocs/install.html">https://ryonaka-itb.github.io/ArchiDocs/install.html</a>&gt;'_</p>
 </section>
 <section id="ssm">
 <h3>SSM接続設定<a class="headerlink" href="#ssm" title="Link to this heading">¶</a></h3>
-<ol class="arabic simple">
-<li><p>ロールのアタッチ</p></li>
+<ol class="arabic">
+<li><p>ロールのアタッチ</p>
+<blockquote>
+<div><p>AmazonSSMManagedInstanceCoreをEC2インスタンスにアタッチ</p>
+<p>→「RocketChat_ArchiSchool_SSM」ロールを作成して、「AmazonSSMManagedInstanceCore」ポリシーをアタッチ</p>
+</div></blockquote>
+</li>
+<li><p>エージェントのインストール</p>
+<blockquote>
+<div><p>Linuxのインスタンスには最初からインストール済み。</p>
+</div></blockquote>
+</li>
+<li><p>SSMセッションの開始</p>
+<blockquote>
+<div><p>AWSコンソールでSystem Managerにアクセス</p>
+<p>セッションマネージャーより対象のインスタンスを選択してセッションを開始</p>
+</div></blockquote>
+</li>
 </ol>
-<p>　AmazonSSMManagedInstanceCoreをEC2インスタンスにアタッチ</p>
-<p>　→「RocketChat_ArchiSchool_SSM」ロールを作成して、「AmazonSSMManagedInstanceCore」ポリシーをアタッチ</p>
-<ol class="arabic simple">
-<li><p>エージェントのインストール</p></li>
-</ol>
-<p>　Linuxのインスタンスには最初からインストール済み。</p>
-<ol class="arabic simple">
-<li><p>SSMセッションの開始</p></li>
-</ol>
-<p>　AWSコンソールでSystem Managerにアクセス</p>
-<p>　セッションマネージャーより対象のインスタンスを選択してセッションを開始</p>
 </section>
 </section>
 <section id="id4">
