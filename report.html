@@ -122,6 +122,23 @@
 <p>　EC2インスタンスへのRocketChat導入手順については以下を参照</p>
 <p>　'RocketChat導入手順&lt;<a class="reference external" href="https://ryonaka-itb.github.io/ArchiDocs/install.html">https://ryonaka-itb.github.io/ArchiDocs/install.html</a>&gt;'_</p>
 </section>
+<section id="ssm">
+<h3>SSM接続設定<a class="headerlink" href="#ssm" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>ロールのアタッチ</p></li>
+</ol>
+<p>　AmazonSSMManagedInstanceCoreをEC2インスタンスにアタッチ</p>
+<p>　→「RocketChat_ArchiSchool_SSM」ロールを作成して、「AmazonSSMManagedInstanceCore」ポリシーをアタッチ</p>
+<ol class="arabic simple">
+<li><p>エージェントのインストール</p></li>
+</ol>
+<p>　Linuxのインスタンスには最初からインストール済み。</p>
+<ol class="arabic simple">
+<li><p>SSMセッションの開始</p></li>
+</ol>
+<p>　AWSコンソールでSystem Managerにアクセス</p>
+<p>　セッションマネージャーより対象のインスタンスを選択してセッションを開始</p>
+</section>
 </section>
 <section id="id4">
 <h2>問題点<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
@@ -142,8 +159,13 @@
 <p>　ifconfig.meにアクセスすることで外部から見えているIPがわかるため（aiChat調べ）、調べた結果を用いてインバウンドルールを設定。</p>
 <p>　165.225.97.4を結果として得たため、165.225.97.0/24を設定</p>
 <p>　⇒SSH接続失敗。</p>
+<p>　　⇒InstanceConnectではAWSのリージョン内にあるどこかのサーバAを踏み台にしてアクセスをしている。</p>
+<p>　　　そのため、ECSから見たらどこかのサーバAから接続しているように見えている（＝そこの穴あけが必要）</p>
+<p>　　　AWSとしてはSSMを使用して接続することを推奨している。</p>
 <ul class="simple">
 <li><p>構築しているAWSサービスがどのような環境になっているか（アーキテクチャ図）みたいなものを簡単に確認する方法は無いのか？</p></li>
+<li><p>「SSHを利用せずに接続できる」ことのメリットは何なのか？</p></li>
+<li><p>EC2インスタンスとの接続においてInstanceConnect、セッションマネージャを使用するよりもSSHクライアントからの接続を使用したほうが良い場面はどのような時なのか？</p></li>
 </ul>
 </section>
 </section>
@@ -162,6 +184,7 @@
 <li><a class="reference internal" href="#id1">実施内容</a><ul>
 <li><a class="reference internal" href="#id2">環境構築準備</a></li>
 <li><a class="reference internal" href="#id3">環境構築</a></li>
+<li><a class="reference internal" href="#ssm">SSM接続設定</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#id4">問題点</a></li>
